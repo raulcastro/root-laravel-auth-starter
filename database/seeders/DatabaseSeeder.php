@@ -1,25 +1,23 @@
 <?php
+// database/seeders/DatabaseSeeder.php
+
+// php artisan migrate:fresh --seed
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     /**
      * Seed the application's database.
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // We call the specific seeders here
+        $this->call([
+            UserSeeder::class,
+            // later you can add PostSeeder::class, SettingSeeder::class, etc.
         ]);
     }
 }
