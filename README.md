@@ -1,59 +1,75 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ~/root/ Laravel Admin Auth Starter
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Laravel](https://img.shields.io/badge/laravel-v11-red) ![AdminLTE](https://img.shields.io/badge/AdminLTE-v3-blue)
 
-## About Laravel
+Welcome to the **~/root/** Admin Authentication Starter Kit. This repository serves as the backend scaffolding for our small company's internal tools and websites, featuring a robust authentication system and a polished dashboard interface.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Tech Stack
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* **Framework:** Laravel 12.42.0
+* **Language:** PHP 8.2+
+* **Database:** MySQL
+* **Frontend:** Blade Templates + Bootstrap
+* **Admin Theme:** [AdminLTE v3](https://github.com/jeroennoten/Laravel-AdminLTE) (Integrated via `jeroennoten/laravel-adminlte`)
+* **Scaffolding:** Laravel UI
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🛠 Progress & Features Implemented
 
-## Learning Laravel
+We have successfully initialized the project with the following features:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+1.  **Fresh Architecture:** Clean installation of the latest Laravel framework.
+2.  **Authentication Scaffolding:** Implemented standard `laravel/ui` auth (Login, Register, Password Reset).
+3.  **AdminLTE Integration:**
+    * Replaced default Laravel views with professional AdminLTE 3 templates.
+    * Configured auth views (Login/Register) to match the AdminLTE theme.
+4.  **Branding Customization:**
+    * Updated `config/adminlte.php` to reflect **~/root/** branding.
+    * Customized window titles and sidebar logos.
+5.  **Smart Routing:**
+    * Modified `routes/web.php` to handle smart redirects.
+    * `guest` users hitting `/` are redirected to `/login`.
+    * `auth` users hitting `/` are redirected to `/home`.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## ⚙️ Installation & Setup
 
-## Laravel Sponsors
+If you are setting this up for the first time:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1.  **Clone the repository**
+    ```bash
+    git clone git@github.com:raulcastro/root-laravel-auth-starter.git
+    cd root-laravel-auth-starter
+    ```
 
-### Premium Partners
+2.  **Install PHP Dependencies**
+    ```bash
+    composer install
+    ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+3.  **Install JS Dependencies & Compile Assets**
+    ```bash
+    npm install && npm run build
+    ```
 
-## Contributing
+4.  **Environment Setup**
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+    *Configure your database credentials in `.env`.*
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+5.  **Run Migrations**
+    ```bash
+    php artisan migrate
+    ```
 
-## Code of Conduct
+6.  **Launch**
+    ```bash
+    php artisan serve
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 📄 License
 
-## Security Vulnerabilities
+This software is open-sourced software licensed under the [MIT license](LICENSE).
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+*Developed with ❤️ by ~/root/*
