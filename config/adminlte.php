@@ -14,8 +14,8 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
-    'title_prefix' => '',
+    'title' => 'Admin',
+    'title_prefix' => '~/root/ | ',
     'title_postfix' => '',
 
     /*
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>~/root/</b> Admin',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -392,6 +392,18 @@ return [
             'text' => 'information',
             'icon_color' => 'cyan',
             'url' => '#',
+        ],
+        ['header' => 'ADMINISTRATION'],
+        [
+            'text' => 'Users',
+            'url'  => 'admin/users',
+            'icon' => 'fas fa-fw fa-users',
+            'active' => ['admin/users*'],
+        ],
+        [
+            'text' => 'Settings',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-fw fa-cogs',
         ],
     ],
 

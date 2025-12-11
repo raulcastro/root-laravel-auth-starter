@@ -4,6 +4,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,11 @@ Auth::routes();
 
 // 3. The Dashboard Route
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Group all Admin routes together
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+
+    // User Management Routes
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
+    // Later we will add: create, store, edit, update, destroy...
+});
