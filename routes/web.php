@@ -53,4 +53,5 @@ Route::middleware(['auth', 'is_super_admin'])->prefix('admin')->name('admin.')->
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
     // Future: Create, Edit, Settings, etc. will go here.
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 });

@@ -37,10 +37,11 @@
                             <td>{{ $user->id }}</td>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    @if($user->avatar)
+                                    @if ($user->avatar)
                                         <img src="{{ $user->avatar }}" alt="Avatar" class="img-circle img-size-32 mr-2">
                                     @else
-                                        <img src="https://ui-avatars.com/api/?name={{ urlencode($user->name) }}&color=7F9CF5&background=EBF4FF" alt="Avatar" class="img-circle img-size-32 mr-2">
+                                        <img src="https://ui-avatars.com/api/?name={{ urlencode($user->name) }}&color=7F9CF5&background=EBF4FF"
+                                            alt="Avatar" class="img-circle img-size-32 mr-2">
                                     @endif
                                     <div>
                                         <div class="font-weight-bold">{{ $user->name }}</div>
@@ -49,7 +50,7 @@
                                 </div>
                             </td>
                             <td>
-                                @if($user->role === 'super_admin')
+                                @if ($user->role === 'super_admin')
                                     <span class="badge badge-danger">Super Admin</span>
                                 @elseif($user->role === 'admin')
                                     <span class="badge badge-warning">Manager</span>
@@ -58,7 +59,7 @@
                                 @endif
                             </td>
                             <td>
-                                @if($user->is_active)
+                                @if ($user->is_active)
                                     <span class="badge badge-success">Active</span>
                                 @else
                                     <span class="badge badge-danger">Banned</span>
@@ -74,9 +75,20 @@
                                 <a href="#" class="btn btn-info btn-xs" title="Edit User">
                                     <i class="fas fa-pencil-alt"></i>
                                 </a>
-                                <a href="#" class="btn btn-danger btn-xs ml-1" title="Delete User">
+
+                                <button type="button" class="btn btn-danger btn-xs ml-1 delete-user-btn"
+                                    title="Delete User" data-user-id="{{ $user->id }}"
+                                    data-user-name="{{ $user->name }}">
                                     <i class="fas fa-trash"></i>
-                                </a>
+                                </button>
+
+                                {{-- Hidden form needed for DELETE request --}}
+                                <form id="delete-form-{{ $user->id }}"
+                                    action="{{ route('admin.users.destroy', $user) }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
                             </td>
                         </tr>
                     @endforeach
@@ -96,5 +108,52 @@
 @stop
 
 @section('js')
-    <script> console.log('User List Loaded'); </script>
+<script>
+    // 1. Initialise Swal2 Listener on Delete Buttons
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.delete-user-btn').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                const userId = this.getAttribute('data-user-id');
+                const userName = this.getAttribute('data-user-name');
+
+                Swal.fire({
+                    title: 'Are you absolutely sure?',
+                    html: `You are about to delete the user: <strong>${userName}</strong>. This action can be undone by restoring the account.`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete them!',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // If confirmed, submit the hidden form
+                        document.getElementById(`delete-form-${userId}`).submit();
+                    }
+                });
+            });
+        });
+    });
+
+    // 2. Display Flash Messages using Swal2 (Success/Error)
+    @if (session('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: '{{ session('success') }}',
+            showConfirmButton: false,
+            timer: 3000
+        });
+    @endif
+
+    @if (session('error'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: '{{ session('error') }}',
+            showConfirmButton: true
+        });
+    @endif
+</script>
 @stop

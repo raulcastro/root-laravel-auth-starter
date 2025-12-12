@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Title
@@ -396,13 +395,13 @@ return [
         ['header' => 'ADMINISTRATION'],
         [
             'text' => 'Users',
-            'url'  => 'admin/users',
+            'url' => 'admin/users',
             'icon' => 'fas fa-fw fa-users',
             'active' => ['admin/users*'],
         ],
         [
             'text' => 'Settings',
-            'url'  => 'admin/settings',
+            'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-cogs',
         ],
     ],
@@ -419,15 +418,7 @@ return [
     |
     */
 
-    'filters' => [
-        JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\SearchFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class,
-    ],
+    'filters' => [JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class, JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class, JeroenNoten\LaravelAdminLte\Menu\Filters\SearchFilter::class, JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter::class, JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class, JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class, JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class],
 
     /*
     |--------------------------------------------------------------------------
@@ -487,13 +478,18 @@ return [
                 ],
             ],
         ],
-        'Sweetalert2' => [
-            'active' => false,
+        'sweetalert2' => [
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'asset' => true,
+                    'location' => 'vendor/sweetalert2/sweetalert2.all.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/sweetalert2/sweetalert2.min.css',
                 ],
             ],
         ],
