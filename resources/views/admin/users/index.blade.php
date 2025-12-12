@@ -1,4 +1,4 @@
-{{-- resources/views/admin/users/index.blade.php --}}
+{{-- /resources/views/admin/users/index.blade.php --}}
 
 @extends('adminlte::page')
 
@@ -27,7 +27,8 @@
                         <th>User</th>
                         <th>Role</th>
                         <th>Status</th>
-                        <th style="width: 150px">Actions</th>
+                        <th>Registered On</th> {{-- ⭐️ NEW HEADER --}}
+                        <th style="width: 100px">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,12 +64,18 @@
                                     <span class="badge badge-danger">Banned</span>
                                 @endif
                             </td>
+
+                            {{-- ⭐️ NEW COLUMN DATA --}}
                             <td>
-                                <a href="#" class="btn btn-info btn-xs">
-                                    <i class="fas fa-pencil-alt"></i> Edit
+                                {{ $user->created_at->format('j \of F, Y') }}
+                            </td>
+
+                            <td class="text-nowrap">
+                                <a href="#" class="btn btn-info btn-xs" title="Edit User">
+                                    <i class="fas fa-pencil-alt"></i>
                                 </a>
-                                <a href="#" class="btn btn-danger btn-xs">
-                                    <i class="fas fa-trash"></i> Delete
+                                <a href="#" class="btn btn-danger btn-xs ml-1" title="Delete User">
+                                    <i class="fas fa-trash"></i>
                                 </a>
                             </td>
                         </tr>
